@@ -5,3 +5,12 @@
   width: 40px;
   margin-right: 5px;
 }
+
+.pixel {
+  border: solid 1px black;
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color: white;
+  margin-top: -5px;
+}
