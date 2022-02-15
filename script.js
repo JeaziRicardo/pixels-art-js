@@ -45,3 +45,14 @@ function selectColorBlack() {
   }
 }
 selectColorBlack();
+
+function colorSelect() {
+  colorPalette.addEventListener('click', function(event){
+    let itemSelect = document.querySelector('.selected');
+    itemSelect.classList.remove('selected');
+    if (event.target.className === 'color') {
+      event.target.className = 'color selected';
+    }
+  })
+}
+colorSelect();
