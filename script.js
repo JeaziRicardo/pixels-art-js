@@ -37,3 +37,8 @@ function createPixels() {
   }
 }
 createPixels();
+
+window.onload = function () {
+  let colorBlack = document.querySelector('.color');
+  colorBlack.className = 'color selected';
+}
