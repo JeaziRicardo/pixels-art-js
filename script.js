@@ -1,5 +1,6 @@
 const colorPalette = document.querySelector('#color-palette');
 const pixelBord = document.querySelector('#pixel-board');
+const button = document.querySelector('#clear-board');
 
 function createForCollors() {
   for (let index = 0; index < 4; index += 1) {
@@ -65,3 +66,11 @@ function colorPixelFill() {
   });
 }
 colorPixelFill();
+
+function clearPixels() {
+  const pixels = document.querySelectorAll('.pixel');
+  for (let index = 0; index < pixels.length; index += 1) {
+    pixels[index].style.backgroundColor = 'white';
+  }
+}
+button.addEventListener('click', clearPixels);
