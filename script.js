@@ -3,7 +3,7 @@ const pixelBord = document.querySelector('#pixel-board');
 
 function createForCollors() {
   for (let index = 0; index < 4; index += 1) {
-    let elementPalette = document.createElement('li');
+    const elementPalette = document.createElement('li');
     if (index === 1) {
       elementPalette.style.backgroundColor = 'blue';
       elementPalette.className = 'color';
@@ -26,11 +26,11 @@ function createForCollors() {
 createForCollors();
 
 function createPixels() {
-  for (index = 0; index < 5; index += 1) {
-    let linePixel = document.createElement('div');
+  for (let index = 0; index < 5; index += 1) {
+    const linePixel = document.createElement('div');
     pixelBord.appendChild(linePixel);
-    for (index2 = 0; index2 < 5; index2 += 1) {
-      let columnPixel = document.createElement('div');
+    for (let index2 = 0; index2 < 5; index2 += 1) {
+      const columnPixel = document.createElement('div');
       columnPixel.className = 'pixel';
       linePixel.appendChild(columnPixel);
     }
@@ -40,19 +40,28 @@ createPixels();
 
 function selectColorBlack() {
   window.onload = function () {
-    let colorBlack = document.querySelector('.color');
+    const colorBlack = document.querySelector('.color');
     colorBlack.className = 'color selected';
-  }
+  };
 }
 selectColorBlack();
 
 function colorSelect() {
-  colorPalette.addEventListener('click', function(event){
-    let itemSelect = document.querySelector('.selected');
+  colorPalette.addEventListener ('click', function (event) {
+    const itemSelect = document.querySelector('.selected');
     itemSelect.classList.remove('selected');
     if (event.target.className === 'color') {
       event.target.className = 'color selected';
     }
-  })
+  });
 }
 colorSelect();
+
+function colorPixelFill() {
+  pixelBord.addEventListener('click', function (event) {
+    let selected = document.querySelector('.selected');
+    let color = window.getComputedStyle(selected);
+    event.target.style.backgroundColor = color.getPropertyValue('background-color');
+  });
+}
+colorPixelFill();
