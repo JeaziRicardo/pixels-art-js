@@ -10,15 +10,15 @@ function createForCollors() {
   for (let index = 0; index < 4; index += 1) {
     const elementPalette = document.createElement('li');
     if (index === 1) {
-      elementPalette.style.backgroundColor = 'blue';
+      elementPalette.style.backgroundColor = genereteColor();
       elementPalette.className = 'color';
       colorPalette.appendChild(elementPalette);
     } else if (index === 2) {
-      elementPalette.style.backgroundColor = 'red';
+      elementPalette.style.backgroundColor = genereteColor();
       elementPalette.className = 'color';
       colorPalette.appendChild(elementPalette);
     } else if (index === 3) {
-      elementPalette.style.backgroundColor = 'green';
+      elementPalette.style.backgroundColor = genereteColor();
       elementPalette.className = 'color';
       colorPalette.appendChild(elementPalette);
     } else {
@@ -97,3 +97,12 @@ function goToGo() {
   }
 }
 vqvButton.addEventListener('click', goToGo);
+
+function genereteColor(opacidade = 1) {
+  let r = Math.random() * 255;
+  let g = Math.random() * 255;
+  let b = Math.random() * 255;
+  
+  return `rgba(${r}, ${g}, ${b}, ${opacidade})`;
+}
+// A função genereteColor foi retirada do site: https://wallacemaxters.com.br/blog/2021/02/20/como-gerar-cores-aleatorias-no-javascript
