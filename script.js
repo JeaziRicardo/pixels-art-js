@@ -1,6 +1,10 @@
 const colorPalette = document.querySelector('#color-palette');
-const pixelBord = document.querySelector('#pixel-board');
-const button = document.querySelector('#clear-board');
+const pixelBoard = document.querySelector('#pixel-board');
+const clearButton = document.querySelector('#clear-board');
+let input = document.querySelector('#board-size');
+const vqvButton = document.querySelector('#generate-board');
+input.min = 1; 
+
 
 function createForCollors() {
   for (let index = 0; index < 4; index += 1) {
@@ -26,18 +30,18 @@ function createForCollors() {
 }
 createForCollors();
 
-function createPixels() {
-  for (let index = 0; index < 5; index += 1) {
+function createPixels(value) {
+  for (let index = 0; index < value; index += 1) {
     const linePixel = document.createElement('div');
-    pixelBord.appendChild(linePixel);
-    for (let index2 = 0; index2 < 5; index2 += 1) {
+    pixelBoard.appendChild(linePixel);
+    for (let index2 = 0; index2 < value; index2 += 1) {
       const columnPixel = document.createElement('div');
       columnPixel.className = 'pixel';
       linePixel.appendChild(columnPixel);
     }
   }
 }
-createPixels();
+createPixels(5);
 
 function selectColorBlack() {
   window.onload = function () {
@@ -59,9 +63,9 @@ function colorSelect() {
 colorSelect();
 
 function colorPixelFill() {
-  pixelBord.addEventListener('click', function (event) {
-    let selected = document.querySelector('.selected');
-    let color = window.getComputedStyle(selected);
+  pixelBoard.addEventListener('click', function (event) {
+    const selected = document.querySelector('.selected');
+    const color = window.getComputedStyle(selected);
     event.target.style.backgroundColor = color.getPropertyValue('background-color');
   });
 }
@@ -73,4 +77,23 @@ function clearPixels() {
     pixels[index].style.backgroundColor = 'white';
   }
 }
-button.addEventListener('click', clearPixels);
+clearButton.addEventListener('click', clearPixels);
+
+function goToGo() {
+  let pixels = input.value;
+  if (pixels <= 0) {
+    window.alert('Board inválido!');
+  } else if (pixels <= 4) {
+    pixels = 5;
+    pixelBoard.innerHTML = '';
+    createPixels(pixels);
+  } else if (pixels > 50) {
+    pixels = 50;
+    pixelBoard.innerHTML = '';
+    createPixels(pixels);
+  } else {
+    pixelBoard.innerHTML = '';
+    createPixels(pixels);
+  }
+}
+vqvButton.addEventListener('click', goToGo);
